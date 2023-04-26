@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: myuser
+            MYSQL_PASSWORD: mypassword
+        volumes:
+            - db_data:/var/lib/mysql
+        ports:
+            - "3308:3306"
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: db
+            PMA_USER: myuser
+            PMA_PASSWORD: mypassword
+        ports:
+            - "8083:80"
+        depends_on:
+            - db
+
+volumes:
+    db_data:
