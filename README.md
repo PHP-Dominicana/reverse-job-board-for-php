@@ -52,6 +52,12 @@ php artisan serve
 php artisan test
 ```
 
+### Run phpstan
+
+```bash
+composer run stan
+```
+
 ## Contributing
 
 Thank you for considering contributing to the reverse job board!.
