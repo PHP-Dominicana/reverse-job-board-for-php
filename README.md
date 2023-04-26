@@ -12,7 +12,7 @@ Install frontend dependencies
 
 ```bash
 npm install
-npm run b
+npm run build
 ```
 
 ## Setup database
