@@ -46,6 +46,11 @@ php artisan migrate
 php artisan serve
 ``` 
 
+### Run tests
+
+```bash
+php artisan test
+```
 
 ## Contributing
 
