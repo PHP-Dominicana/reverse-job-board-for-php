@@ -55,7 +55,7 @@ php artisan test
 ### Run phpstan
 
 ```bash
-composer run stan
+composer run phpstan
 ```
 
 ## Contributing
