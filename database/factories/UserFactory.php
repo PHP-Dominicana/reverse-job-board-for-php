@@ -34,6 +34,12 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+            'title' => $this->faker->jobTitle(),
+            'description' => $this->faker->paragraph(),
+            'status' => $this->faker->randomElement(['Actively looking', 'Open', 'Close']),
+            'experience_level' => $this->faker->randomElement(['Junior', 'Mid', 'Senior']),
+            'location' => $this->faker->city(),
+            'phone_number' => $this->faker->phoneNumber(),
         ];
     }
 
