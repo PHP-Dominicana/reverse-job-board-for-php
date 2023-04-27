@@ -17,8 +17,16 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/developers', function () {
+    return view('pages.developers');
+});
+
+Route::get('/jobs', function () {
+    return view('pages.jobs');
+});
+
 Route::get('/about', function () {
-    return view('about');
+    return view('pages.about');
 });
 
 Route::middleware([
