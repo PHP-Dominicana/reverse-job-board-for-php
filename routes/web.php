@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', \App\Http\Controllers\HomeController::class);
 
 Route::get('/developers', function () {
     return view('pages.developers');
 });
+
+Route::get('/user/developers', function () {
+    return view('pages.developers');
+})->name('developers.create');
 
 Route::get('/jobs', function () {
     return view('pages.jobs');
