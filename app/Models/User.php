@@ -19,7 +19,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    public const SMALL_DESCRIPTION_LIMIT = 150;
+    public const SHORT_DESCRIPTION_LENGTH = 150;
 
     /**
      * The attributes that are mass assignable.
@@ -62,8 +62,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function getSmallDescriptionAttribute(): string
+    public function getShortDescriptionAttribute(): string
     {
-        return Str::limit($this->description, self::SMALL_DESCRIPTION_LIMIT);
+        return Str::limit($this->description ?? '', self::SHORT_DESCRIPTION_LENGTH);
     }
 }

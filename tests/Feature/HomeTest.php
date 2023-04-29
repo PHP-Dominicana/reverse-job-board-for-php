@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\UpdateDeveloperInformation;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class HomeTest extends TestCase
@@ -51,8 +54,21 @@ class HomeTest extends TestCase
 
     public function test_should_see_developers_available(): void
     {
+        $this->actingAs($user = User::factory()->create());
+
+        Livewire::test(UpdateDeveloperInformation::class)
+                ->set('state', [
+                    'title' => 'Test Title',
+                    'description' => 'I\'m a full stack developer who',
+                    'status' => 'Open',
+                    'experience_level' => 'Senior',
+                    'location' => 'Jakarta',
+                    'phone_number' => '081234567890',
+                ])
+                ->call('updateDeveloperInformation');
         $response = $this->get('/');
 
         $response->assertSeeText('Developers available now');
+        $response->assertSeeText($user->fresh()->short_description);
     }
 }
