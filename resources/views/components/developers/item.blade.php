@@ -21,7 +21,7 @@
                         <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                             <div class="sm:flex">
                                 <div class="mr-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
-                                    {{ $developer->smallDescription }}
+                                    {{ $developer->short_description }}
                                 </div>
                             </div>
                         </div>

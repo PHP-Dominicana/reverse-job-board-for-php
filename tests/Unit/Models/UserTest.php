@@ -16,8 +16,8 @@ class UserTest extends TestCase
         $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nis';
         $user = new User;
         $user->description = $description;
-        $expected = Str::limit($description, User::SMALL_DESCRIPTION_LIMIT);
-        $this->assertEquals($expected, $user->small_description);
+        $expected = Str::limit($description, User::SHORT_DESCRIPTION_LENGTH);
+        $this->assertEquals($expected, $user->short_description);
     }
 
     /**
@@ -27,6 +27,6 @@ class UserTest extends TestCase
     {
         $user = new User;
         $user->description = null;
-        $this->assertEquals('', $user->small_description);
+        $this->assertEquals('', $user->short_description);
     }
 }
