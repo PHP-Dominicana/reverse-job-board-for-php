@@ -12,12 +12,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers;
 
-Route::get('/', \App\Http\Controllers\HomeController::class);
+Route::get('/', Controllers\HomeController::class)->name('home');
 
-Route::get('/developers', function () {
-    return view('pages.developers');
-});
+Route::get('/developers/{developer}', Controllers\Developers\DetailController::class)->name('developers.detail');
 
 Route::get('/user/developers', function () {
     return view('pages.developers');
