@@ -19,4 +19,14 @@ class UserTest extends TestCase
         $expected = Str::limit($description, User::SMALL_DESCRIPTION_LIMIT);
         $this->assertEquals($expected, $user->small_description);
     }
+
+    /**
+     * User short description is null should return emptu.
+     */
+    public function test_when_short_description_is_null_should_return_empty(): void
+    {
+        $user = new User;
+        $user->description = null;
+        $this->assertEquals('', $user->small_description);
+    }
 }

@@ -64,6 +64,6 @@ class User extends Authenticatable
 
     public function getSmallDescriptionAttribute(): string
     {
-        return Str::limit($this->description, self::SMALL_DESCRIPTION_LIMIT);
+        return Str::limit($this->description ?? '', self::SMALL_DESCRIPTION_LIMIT);
     }
 }
