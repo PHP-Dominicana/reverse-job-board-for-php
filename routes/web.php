@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers;
 
-Route::get('/', Controllers\HomeController::class)->name('home');
+Route::get('/', Controllers\HomeController::class)->name('home.index');
+
+Route::get('/developers', function () {
+    return view('pages.developers');
+})->name('developers.index');
 
 Route::get('/developers/{developer}', Controllers\Developers\DetailController::class)->name('developers.detail');
 
@@ -24,11 +28,11 @@ Route::get('/user/developers', function () {
 
 Route::get('/jobs', function () {
     return view('pages.jobs');
-});
+})->name('jobs.index');
 
 Route::get('/about', function () {
     return view('pages.about');
-});
+})->name('about.index');
 
 Route::middleware([
     'auth:sanctum',
