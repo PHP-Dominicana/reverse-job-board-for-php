@@ -69,10 +69,10 @@ class UpdateSocialInformationFormTest extends TestCase
             ])
             ->call('updateSocialInformationForm')
             ->assertHasErrors([
-                'state.website' => 'url',
-                'state.linkedin' => 'url',
-                'state.twitter' => 'url',
-                'state.github' => 'url',
+                'website' => 'url',
+                'linkedin' => 'url',
+                'twitter' => 'url',
+                'github' => 'url',
             ]);
     }
 }
