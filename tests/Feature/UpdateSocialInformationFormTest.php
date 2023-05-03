@@ -25,6 +25,8 @@ class UpdateSocialInformationFormTest extends TestCase
 
     public function test_form_section_renders_correctly()
     {
+        $this->actingAs($user = User::factory()->create());
+
         Livewire::test(UpdateSocialInformationForm::class)
             ->assertSee(__('Online presence'))
             ->assertSee(__('Where can people learn more about you and your work?'))
@@ -56,6 +58,8 @@ class UpdateSocialInformationFormTest extends TestCase
 
     public function test_form_section_validates_valid_urls()
     {
+        $this->actingAs($user = User::factory()->create());
+
         Livewire::test(UpdateSocialInformationForm::class)
             ->set('state', [
                 'website' => 'invalid-url',
