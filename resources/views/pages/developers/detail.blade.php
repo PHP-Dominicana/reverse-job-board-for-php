@@ -33,7 +33,7 @@
                                 <div class="border-2 border-indigo-600">
                                     <div class="flex flex-wrap flex-row items-start space-y-3 p-6">
                                         @auth
-                                            <a href="{{ url('/hire') }}" class="transition-all group duration-200 ease-in-out border border-blue-400 hover:border-blue-600 hover:border-l-8 hover:ring-2 hover:ring-blue-600 bg-blue-50 text-base text-black-700 py-3 px-5 inline-flex items-center justify-start w-full">
+                                            <a href="{{ route('developers.hire', $developer->id)  }}" class="transition-all group duration-200 ease-in-out border border-blue-400 hover:border-blue-600 hover:border-l-8 hover:ring-2 hover:ring-blue-600 bg-blue-50 text-base text-black-700 py-3 px-5 inline-flex items-center justify-start w-full">
                                                 <div class="z-10 text-left">
                                                     <p class="mb-2 font-bold">Private Information</p>
                                                     <p class="mb-2">Name: {{ $developer->name }}</p>
@@ -90,9 +90,15 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center">
-                                        <a href="{{ url('/register') }}" class="text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
-                                            Register to hire →
-                                        </a>
+                                        @auth
+                                            <a href="{{ route('developers.hire', $developer->id)  }}" class="text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
+                                                Hire →
+                                            </a>
+                                        @else
+                                            <a href="{{ url('/register') }}" class="text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
+                                                Register to hire →
+                                            </a>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
