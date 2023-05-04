@@ -18,7 +18,7 @@ class UpdateSocialInformationForm extends Component
     public function mount(): void
     {
         $user = Auth::user();
-        $links = json_decode($user->links);
+        $links = $user->links;
         $this->state = [
             'website' => $links->website ?? null,
             'linkedin' => $links->linkedin ?? null,
