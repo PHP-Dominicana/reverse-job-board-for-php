@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 
 Route::get('/', Controllers\HomeController::class)->name('home.index');
-
-Route::get('/developers', function () {
-    return view('pages.developers');
-})->name('developers.index');
-
+Route::get('/developers', Controllers\Developers\IndexController::class)->name('developers.index');
 Route::get('/developers/{developer}', Controllers\Developers\DetailController::class)->name('developers.detail');
 
 Route::get('/user/developers', function () {
