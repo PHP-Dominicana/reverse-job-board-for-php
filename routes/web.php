@@ -39,4 +39,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/developers/hire/{developer}', Controllers\Developers\HireController::class)->name('developers.hire');
+    Route::get('/user/jobs/create', Controllers\Jobs\CreateController::class)->name('jobs.create');
 });
