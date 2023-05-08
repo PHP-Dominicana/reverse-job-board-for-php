@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\jobs;
+namespace App\Http\Controllers\Jobs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;

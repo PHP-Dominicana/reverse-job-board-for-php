@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers;
-use App\Http\Controllers\Jobs\CreateController;
 
 Route::get('/', Controllers\HomeController::class)->name('home.index');
 Route::get('/developers', Controllers\Developers\IndexController::class)->name('developers.index');
@@ -40,5 +39,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/developers/hire/{developer}', Controllers\Developers\HireController::class)->name('developers.hire');
-    Route::get('/user/jobs/create', CreateController::class)->name('jobs.create');
+    Route::get('/user/jobs/create', Controllers\Jobs\CreateController::class)->name('jobs.create');
 });
