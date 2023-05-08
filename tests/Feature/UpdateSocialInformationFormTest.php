@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use Livewire\Livewire;
 use App\Http\Livewire\UpdateSocialInformationForm;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class UpdateSocialInformationFormTest extends TestCase
 {
@@ -48,7 +48,7 @@ class UpdateSocialInformationFormTest extends TestCase
             ->call('updateSocialInformationForm')
             ->assertEmitted('saved');
 
-        $links = json_decode($user->links);
+        $links = $user->links;
 
         $this->assertEquals($links->website, $component->state['website']);
         $this->assertEquals($links->linkedin, $component->state['linkedin']);

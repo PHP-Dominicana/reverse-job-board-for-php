@@ -3,8 +3,10 @@
 namespace App\Actions\Profile;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
+use App\ObjectValue\Link;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class UpdateSocialInformation
 {
@@ -14,9 +16,9 @@ class UpdateSocialInformation
      *
      * @param array<string, string|null> $input
      *
-     * @throws AuthenticationException
+     * @throws AuthenticationException|ValidationException
      */
-    public function update(User $user, array $input): void
+    public function update(?User $user, array $input): void
     {
 
         if ($user === null) {
@@ -30,12 +32,11 @@ class UpdateSocialInformation
             'twitter' => ['nullable', 'url'],
         ])->validateWithBag('updateSocialInformation');
 
-
-        $user->links = json_encode([
-            'website' => $input['website'],
-            'linkedin' => $input['linkedin'],
-            'github' =>  $input['github'],
-            'twitter' => $input['twitter'],
+        $user->links = Link::fromArray([
+            'website' => $input['website'] ?? '',
+            'linkedin' => $input['linkedin'] ?? '',
+            'github' =>  $input['github'] ?? '',
+            'twitter' => $input['twitter'] ?? '',
         ]);
 
         $user->save();
