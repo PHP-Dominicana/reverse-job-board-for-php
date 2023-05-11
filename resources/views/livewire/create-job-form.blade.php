@@ -1,5 +1,5 @@
 <div>
-    <x-form-section submit="updateProfileInformation">
+    <x-form-section submit="createJob">
         <x-slot name="title">
             {{ __('Job Information') }}
         </x-slot>
@@ -65,6 +65,13 @@
                 <x-input-error for="company_name" class="mt-2" />
             </div>
 
+            <!-- Location -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="location" value="{{ __('Location Name') }}" />
+                <x-input id="location" type="text" class="mt-1 block w-full" wire:model.defer="state.location" autocomplete="location" />
+                <x-input-error for="location" class="mt-2" />
+            </div>
+
             <!-- Remote policy -->
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="remote_policy" value="{{ __('Remote policy') }}" />
@@ -81,12 +88,12 @@
                 <x-input-error for="job_type" class="mt-2" />
             </div>
 
-            <!-- Job Level -->
+            <!-- Experience Level -->
             <div class="col-span-6 sm:col-span-4">
-                <x-label for="job_level" value="{{ __('Job Level') }}" />
-                <x-select id="job_level" class="mt-1 block w-full" :options="$jobLevels" wire:model.defer="state.job_level" autocomplete="job_level">
+                <x-label for="experience_level" value="{{ __('Experience Level') }}" />
+                <x-select id="experience_level" class="mt-1 block w-full" :options="$experienceLevels" wire:model.defer="state.experience_level" autocomplete="experience_level">
                 </x-select>
-                <x-input-error for="job_level" class="mt-2" />
+                <x-input-error for="experience_level" class="mt-2" />
             </div>
 
             <!-- Salary -->

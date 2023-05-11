@@ -2,12 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\Job\CreateJobAction;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateJobForm extends Component
 {
+    use WithFileUploads;
+
     /** @var array<int, array<string, string>> */
     private array $remotePolicies = [
         ['value' => 'Remote', 'label' => 'Remote'],
@@ -25,7 +30,7 @@ class CreateJobForm extends Component
     ];
 
     /** @var array<int, array<string, string>> */
-    private array $jobLevels = [
+    private array $experienceLevels = [
         ['value' => 'Junior', 'label' => 'Junior'],
         ['value' => 'Mid', 'label' => 'Mid'],
         ['value' => 'Senior', 'label' => 'Senior'],
@@ -34,19 +39,24 @@ class CreateJobForm extends Component
 
     public User $user;
 
-    /** @var array{title: string, company_name: string, salary: number, experience_level: string, job_type: string, job_level: string, remote_policy: string, description: string, photo_url: string, photo_path: string }  */
+    /** @var array{ photo: ?UploadedFile, title: string, company_name: string, salary: number, experience_level: string, job_type: string, remote_policy: string, description: string, photo_url: ?string, photo_path: ?string }  */
     public array $state = [
         'title' => '',
         'company_name' => '',
+        'location' => '',
         'remote_policy' => 'Remote',
-        'job_type' => '',
-        'experience_level' => '',
-        'salary' => 0,
+        'job_type' => 'Full-time',
+        'experience_level' => 'Junior',
+        'salary' => 0.00,
         'description' => '',
-        'job_level' => '',
         'photo_url' => '',
         'photo_path' => '',
     ];
+
+    /**
+     * @var mixed
+     */
+    public $photo;
 
     /** @var array<string, string> */
     protected $listeners = ['saved' => 'savedAction'];
@@ -62,18 +72,35 @@ class CreateJobForm extends Component
         return view('livewire.create-job-form', [
             'remotePolicies' => $this->remotePolicies,
             'jobTypes' => $this->jobTypes,
-            'jobLevels' => $this->jobLevels,
+            'experienceLevels' => $this->experienceLevels,
         ]);
     }
 
-    public function createJob(): void
+    public function createJob(CreateJobAction $jobAction): void
     {
-
+        $this->resetErrorBag();
+        $jobAction->create(
+            $this->photo ?
+                array_merge($this->state, ['photo' => $this->photo]) :
+            $this->state
+        );
+        $this->emit('saved');
     }
 
     public function savedAction(): void
     {
-        $this->emit('saved');
+        $this->state = [
+            'title' => '',
+            'company_name' => '',
+            'location' => '',
+            'remote_policy' => 'Remote',
+            'job_type' => 'Full-time',
+            'experience_level' => 'Junior',
+            'salary' => 0.00,
+            'description' => '',
+            'photo_url' => '',
+            'photo_path' => '',
+        ];
     }
 
     private function defaultPhotoUrl(): string
