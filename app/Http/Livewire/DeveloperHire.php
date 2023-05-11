@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class DeveloperHire extends Component
@@ -15,7 +15,7 @@ class DeveloperHire extends Component
         $this->developer = $developer;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.developer-hire');
     }
