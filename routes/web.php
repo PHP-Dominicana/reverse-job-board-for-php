@@ -37,10 +37,21 @@ Route::get('/about', function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/developers/hire/{developer}', Controllers\Developers\HireController::class)->name('developers.hire');
+});
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'role:admin'
+])->group(function () {
+    Route::get('admin/dashboard', function () {
+        return view('pages.developers');
+    });
 });

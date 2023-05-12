@@ -29,6 +29,21 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+
+            <div class="mt-4">
+                <x-label for="role_id" value="{{ __('Account Type') }}" />
+                 <div class="flex my-2">
+                    <div class="mr-3">
+                        <x-input id="developer"  type="radio" name="role_id" value="2" />
+                        <x-label for="developer" class="inline" value="{{ __('Developer') }}" />
+                    </div>
+                    <div class="mr-3">
+                        <x-input id="company"  type="radio" name="role_id" value="3" />
+                        <x-label for="company" class="inline" value="{{ __('Company') }}" />
+                    </div>
+                 </div>
+            </div>
+            
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">

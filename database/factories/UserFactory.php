@@ -38,6 +38,7 @@ class UserFactory extends Factory
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->randomElement(['Actively looking', 'Open', 'Close']),
             'experience_level' => $this->faker->randomElement(['Junior', 'Mid', 'Senior']),
+            'role_id' => $this->faker->randomElement([1, 2, 3]),
             'location' => $this->faker->city(),
             'phone_number' => $this->faker->phoneNumber(),
         ];
