@@ -31,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -67,5 +68,17 @@ class User extends Authenticatable
     public function getShortDescriptionAttribute(): string
     {
         return Str::limit($this->description ?? '', self::SHORT_DESCRIPTION_LENGTH);
+    }
+
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role->name === $role;
     }
 }
