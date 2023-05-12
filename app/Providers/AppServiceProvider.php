@@ -27,10 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerComponents();
-        $this->developerActions();
+        $this->registerActions();
     }
 
-    public function developerActions(): void
+    public function registerActions(): void
     {
         app()->singleton(UpdatesUserDeveloperInformation::class, function () {
             return new UpdatesUserDeveloperInformation();
