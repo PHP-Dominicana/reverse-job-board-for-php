@@ -43,10 +43,20 @@ class GoogleController extends Controller
 			if ($finduser) {
 
 				Auth::login($finduser);
-
+				dd($finduser);
 				return redirect()->intended('dashboard');
 
 			} else {
+
+				$findUserGoogle = User::where('github_id', '!=', '')
+									  ->where('email', $user->email)->first();
+
+
+				if (!empty($findUserGoogle)) {
+					return redirect()->intended('login')
+									 ->with('message', 'Looks like your email is already user by an account with Github');
+				}
+
 				$newUser = User::create([
 											'name' => $user->name,
 											'email' => $user->email,
@@ -61,7 +71,13 @@ class GoogleController extends Controller
 			}
 
 		} catch (Exception $e) {
-			dd($e->getMessage());
+			$message = 'Looks like we have an issue accessing your account linked with Google';
+			if ($e->getCode() == 401) {
+				$message = 'Looks like your Google session login expired, try again latter';
+			}
+
+			return redirect()->intended('login')
+							 ->with('message', $message);
 		}
 	}
 }

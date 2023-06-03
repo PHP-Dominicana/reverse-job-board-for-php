@@ -44,6 +44,8 @@ class GithubController extends Controller
 
 				Auth::login($finduser);
 
+				dd($finduser);
+
 				return redirect()->intended('dashboard');
 
 			} else {
@@ -74,7 +76,7 @@ class GithubController extends Controller
 
 			$message = 'Looks like we have an issue accessing your account linked with Github';
 			if ($e->getCode() == 401) {
-				$message = 'Looks like your Github session logic expired, try again latter';
+				$message = 'Looks like your Github session login expired, try again latter';
 			}
 
 			return redirect()->intended('login')
