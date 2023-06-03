@@ -12,6 +12,11 @@
             </div>
         @endif
 
+        @if(session()->has('message'))
+            <div class="mb-4 font-medium text-sm text-red-600">
+            <p class="alert alert-error"> {{ session()->get('message') }}</p>
+            </div>
+        @endif
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -45,12 +50,12 @@
             </div>
             <div class="flex items-center justify-end mt-4">
                 <a href="{{ url('auth/google') }}">
-                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em; width: 170px;">
                 </a>
             </div>
             <div class="flex items-center justify-end mt-4">
                 <a href="{{ url('auth/github') }}">
-                    <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/picture/file/4363/github.png" style="margin-left: 3em;">
+                    <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/picture/file/4363/github.png" style=" width: 180px;">
                 </a>
             </div>
         </form>

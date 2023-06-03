@@ -47,6 +47,16 @@ class GithubController extends Controller
 				return redirect()->intended('dashboard');
 
 			} else {
+
+				$findUserGoogle = User::where('google_id', '!=', '')
+									  ->where('email', $user->email)->first();
+
+
+				if (!empty($findUserGoogle)) {
+					return redirect()->intended('login')
+									 ->with('message', 'Looks like your email is already user by an account with Google');
+				}
+
 				$newUser = User::create([
 											'name' => $user->name,
 											'email' => $user->email,
@@ -61,7 +71,14 @@ class GithubController extends Controller
 			}
 
 		} catch (Exception $e) {
-			dd($e->getMessage());
+
+			$message = 'Looks like we have an issue accessing your account linked with Github';
+			if ($e->getCode() == 401) {
+				$message = 'Looks like your Github session logic expired, try again latter';
+			}
+
+			return redirect()->intended('login')
+							 ->with('message', $message);
 		}
 	}
 }
