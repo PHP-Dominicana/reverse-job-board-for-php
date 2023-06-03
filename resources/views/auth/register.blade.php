@@ -75,6 +75,11 @@
                     <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
                 </a>
             </div>
+            <div class="flex items-center justify-end mt-4">
+                <a href="{{ url('auth/github') }}">
+                    <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/picture/file/4363/github.png" style="margin-left: 3em;">
+                </a>
+            </div>
         </form>
     </x-authentication-card>
 </x-guest-layout>

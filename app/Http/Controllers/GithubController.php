@@ -7,9 +7,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class GoogleController extends Controller
+class GithubController extends Controller
 {
 
 	const ROLE_ID_USER = 2;
@@ -19,11 +18,11 @@ class GoogleController extends Controller
 	 *
 	 * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
 	 */
-	public function redirectToGoogle()
+	public function redirectToGithub()
 	: \Symfony\Component\HttpFoundation\RedirectResponse|\Illuminate\Http\RedirectResponse
 	{
 
-		return Socialite::driver('google')->redirect();
+		return Socialite::driver('github')->redirect();
 	}
 
 	/**
@@ -31,14 +30,14 @@ class GoogleController extends Controller
 	 *
 	 * @return void
 	 */
-	public function handleGoogleCallback()
+	public function handleGithubCallback()
 	{
 
 		try {
 
-			$user = Socialite::driver('google')->user();
+			$user = Socialite::driver('github')->user();
 
-			$finduser = User::where('google_id', $user->id)->first();
+			$finduser = User::where('github_id', $user->id)->first();
 
 			if ($finduser) {
 
@@ -50,7 +49,7 @@ class GoogleController extends Controller
 				$newUser = User::create([
 											'name' => $user->name,
 											'email' => $user->email,
-											'google_id' => $user->id,
+											'github_id' => $user->id,
 											'password' => Hash::make(uniqid()),
 											'role_id' => self::ROLE_ID_USER,
 										]);
