@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Hash;
 class GithubController extends Controller
 {
 
-	const ROLE_ID_USER = 2;
+	//When register using Socialite, the role_id will be 0 because the user don't have select a role yet
+	const ROLE_ID_USER = 0;
+	const ACCOUNT_TYPE_MISSING_MESSAGE = 'Please select your account type to continue.';
 
 	/**
 	 * Create a new controller instance.
@@ -44,7 +46,9 @@ class GithubController extends Controller
 
 				Auth::login($finduser);
 
-				dd($finduser);
+				if ($finduser->role_id == self::ROLE_ID_USER) {
+					return redirect()->intended('user/profile')->with('message', self::ACCOUNT_TYPE_MISSING_MESSAGE);
+				}
 
 				return redirect()->intended('dashboard');
 
