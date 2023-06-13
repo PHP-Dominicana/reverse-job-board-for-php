@@ -52,3 +52,9 @@ Route::middleware([
         return view('pages.developers');
     });
 });
+
+Route::get('auth/google', [Controllers\GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [Controllers\GoogleController::class, 'handleGoogleCallback']);
+
+Route::get('auth/github', [Controllers\GithubController::class, 'redirectToGithub']);
+Route::get('auth/github/callback', [Controllers\GithubController::class, 'handleGithubCallback']);
