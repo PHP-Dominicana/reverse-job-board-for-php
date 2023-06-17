@@ -101,7 +101,7 @@
                         <x-label for="company" class="inline" value="{{ __('Company') }}" />
                     </div>
                 @else
-                    {{ $this->user->role_id == 1 ? __('Developer') :  __('Company') }}
+                    {{ $this->user->roleName() }}
                 @endif
             </div>
         </div>
