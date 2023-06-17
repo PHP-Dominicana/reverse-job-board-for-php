@@ -69,7 +69,7 @@ trait HasPhoto
      */
     protected function defaultPhotoUrl(): string
     {
-        $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
+        $name = trim(collect(explode(' ', $this->company_name))->map(function ($segment) {
             return mb_substr($segment, 0, 1);
         })->join(' '));
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers;
 
 Route::get('/', Controllers\HomeController::class)->name('home.index');
 Route::get('/developers', Controllers\Developers\IndexController::class)->name('developers.index');
@@ -22,9 +22,8 @@ Route::get('/user/developers', function () {
     return view('pages.developers');
 })->name('developers.create');
 
-Route::get('/jobs', function () {
-    return view('pages.jobs');
-})->name('jobs.index');
+Route::get('/jobs', Controllers\Jobs\IndexController::class)->name('jobs.index');
+Route::get('/jobs/{job}', fn () => 'Hello world')->name('jobs.detail');
 
 Route::get('/about', function () {
     return view('pages.about');

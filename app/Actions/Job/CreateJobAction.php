@@ -21,6 +21,7 @@ class CreateJobAction
         Validator::make($input, [
             'title' => ['required', 'string', 'max:255'],
             'company_name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string'],
             'remote_policy' => ['required', 'string', 'max:255'],
             'job_type' => ['required', 'string', 'max:255'],
             'experience_level' => ['required', 'string', 'max:255'],
@@ -37,6 +38,7 @@ class CreateJobAction
             'experience_level' => $input['experience_level'],
             'salary' => $input['salary'],
             'description' => $input['description'],
+            'location' => $input['location'],
         ])->save();
 
         if(isset($input['photo'])){

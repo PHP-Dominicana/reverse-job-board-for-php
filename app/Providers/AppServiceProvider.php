@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Actions\Developer\UpdatesUserDeveloperInformation;
 use App\View\Components\Developers\Item as DevelopersItem;
 use App\View\Components\icons\DefaultLogo;
+use App\View\Components\Jobs\Item as JobsItem;
 use App\View\Components\MainMenu;
 use App\View\Components\Select;
 use App\View\Components\Textarea;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('textarea', Textarea::class);
         Blade::component('select', Select::class);
         Blade::component('developers.item', DevelopersItem::class);
+        Blade::component('jobs.item', JobsItem::class);
         Blade::component('icons.default-log', DefaultLogo::class);
     }
 }
