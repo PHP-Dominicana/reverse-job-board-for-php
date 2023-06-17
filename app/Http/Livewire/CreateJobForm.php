@@ -51,6 +51,7 @@ class CreateJobForm extends Component
         'description' => '',
         'photo_url' => '',
         'photo_path' => '',
+        'apply_url' => '',
     ];
 
     /**
@@ -100,6 +101,7 @@ class CreateJobForm extends Component
             'description' => '',
             'photo_url' => '',
             'photo_path' => '',
+            'apply_url' => '',
         ];
     }
 
