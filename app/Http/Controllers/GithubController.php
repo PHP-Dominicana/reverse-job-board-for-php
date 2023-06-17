@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use Exception;
 use App\Models\User;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class GithubController extends Controller
 {
@@ -19,10 +19,10 @@ class GithubController extends Controller
 	/**
 	 * Create a new controller instance.
 	 *
-	 * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+	 * @return RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	public function redirectToGithub()
-	: \Symfony\Component\HttpFoundation\RedirectResponse|\Illuminate\Http\RedirectResponse
+	: \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
 	{
 
 		return Socialite::driver('github')->redirect();
@@ -31,9 +31,8 @@ class GithubController extends Controller
 	/**
 	 * Create a new controller instance.
 	 *
-	 * @return void
 	 */
-	public function handleGithubCallback()
+	public function handleGithubCallback(): RedirectResponse
 	{
 
 		try {
