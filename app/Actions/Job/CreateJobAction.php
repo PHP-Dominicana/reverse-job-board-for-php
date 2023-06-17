@@ -27,6 +27,8 @@ class CreateJobAction
             'experience_level' => ['required', 'string', 'max:255'],
             'salary' => ['required', 'numeric'],
             'description' => ['required', 'string'],
+            'apply_url' => ['required', 'url'],
+            'wbesite_url' => ['required', 'url'],
         ])->validateWithBag('createJobForm');
         $job = new Job();
 
@@ -39,6 +41,8 @@ class CreateJobAction
             'salary' => $input['salary'],
             'description' => $input['description'],
             'location' => $input['location'],
+            'apply_url' => $input['apply_url'],
+            'wbesite_url' => $input['wbesite_url'],
         ])->save();
 
         if(isset($input['photo'])){

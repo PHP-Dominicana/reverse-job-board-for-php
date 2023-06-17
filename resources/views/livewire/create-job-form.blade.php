@@ -88,6 +88,20 @@
                 <x-input-error for="job_type" class="mt-2" />
             </div>
 
+            <!-- Job url to apply -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="apply_url" value="{{ __('Apply url') }}" />
+                <x-input id="apply_url" type="text" class="mt-1 block w-full" wire:model.defer="state.apply_url" autocomplete="apply_url" />
+                <x-input-error for="apply_url" class="mt-2" />
+            </div>
+
+            <!-- Job website url -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="website_url" value="{{ __('Website url') }}" />
+                <x-input id="website_url" type="text" class="mt-1 block w-full" wire:model.defer="state.website_url" autocomplete="website_url" />
+                <x-input-error for="website_url" class="mt-2" />
+            </div>
+
             <!-- Experience Level -->
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="experience_level" value="{{ __('Experience Level') }}" />

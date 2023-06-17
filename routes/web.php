@@ -23,7 +23,7 @@ Route::get('/user/developers', function () {
 })->name('developers.create');
 
 Route::get('/jobs', Controllers\Jobs\IndexController::class)->name('jobs.index');
-Route::get('/jobs/{job}', fn () => 'Hello world')->name('jobs.detail');
+Route::get('/jobs/{job}', Controllers\Jobs\DetailController::class)->name('jobs.detail');
 
 Route::get('/about', function () {
     return view('pages.about');
