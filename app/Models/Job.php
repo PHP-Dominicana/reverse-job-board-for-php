@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasPhoto;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Job extends Model
 {
     use HasPhoto;
+	  use HasFactory;
 
     public const SHORT_DESCRIPTION_LENGTH = 150;
 
@@ -25,4 +27,5 @@ class Job extends Model
     {
         return Str::limit($this->description ?? '', self::SHORT_DESCRIPTION_LENGTH);
     }
+
 }
