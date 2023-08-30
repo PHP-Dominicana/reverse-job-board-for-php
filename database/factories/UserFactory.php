@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -38,7 +39,7 @@ class UserFactory extends Factory
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->randomElement(['Actively looking', 'Open', 'Close']),
             'experience_level' => $this->faker->randomElement(['Junior', 'Mid', 'Senior']),
-            'role_id' => $this->faker->randomElement([1, 2, 3]),
+            'role_id' => Role::factory()->create()->id,
             'location' => $this->faker->city(),
             'phone_number' => $this->faker->phoneNumber(),
         ];

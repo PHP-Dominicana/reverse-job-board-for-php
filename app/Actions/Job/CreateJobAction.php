@@ -21,11 +21,14 @@ class CreateJobAction
         Validator::make($input, [
             'title' => ['required', 'string', 'max:255'],
             'company_name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string'],
             'remote_policy' => ['required', 'string', 'max:255'],
             'job_type' => ['required', 'string', 'max:255'],
             'experience_level' => ['required', 'string', 'max:255'],
             'salary' => ['required', 'numeric'],
             'description' => ['required', 'string'],
+            'apply_url' => ['required', 'url'],
+            'wbesite_url' => ['required', 'url'],
         ])->validateWithBag('createJobForm');
         $job = new Job();
 
@@ -37,6 +40,9 @@ class CreateJobAction
             'experience_level' => $input['experience_level'],
             'salary' => $input['salary'],
             'description' => $input['description'],
+            'location' => $input['location'],
+            'apply_url' => $input['apply_url'],
+            'wbesite_url' => $input['wbesite_url'],
         ])->save();
 
         if(isset($input['photo'])){

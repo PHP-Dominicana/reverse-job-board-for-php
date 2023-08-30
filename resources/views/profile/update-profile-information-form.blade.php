@@ -81,6 +81,30 @@
                 @endif
             @endif
         </div>
+
+        <!-- Account Type -->
+        <div class="col-span-6 sm:col-span-4">
+            @if($this->user->role_id == 0)
+                <div class="mb-4 font-medium text-sm text-red-600">
+                    <p class="alert alert-error"> {{ __('Please select your account type to continue.') }}</p>
+                </div>
+            @endif
+            <x-label for="role_id" value="{{ __('Account Type') }}" />
+            <div class="flex my-2">
+                @if ($this->user->role_id == 0)
+                    <div class="mr-3">
+                        <x-input id="developer" wire:model.defer="state.role_id" type="radio" name="role_id" value="2" />
+                        <x-label for="developer" class="inline" value="{{ __('Developer') }}" />
+                    </div>
+                    <div class="mr-3">
+                        <x-input id="company" wire:model.defer="state.role_id" type="radio" name="role_id" value="3" />
+                        <x-label for="company" class="inline" value="{{ __('Company') }}" />
+                    </div>
+                @else
+                    {{ $this->user->roleName() }}
+                @endif
+            </div>
+        </div>
     </x-slot>
 
     <x-slot name="actions">
