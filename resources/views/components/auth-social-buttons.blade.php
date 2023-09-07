@@ -11,7 +11,7 @@
             </div>
           </div>
     </div>
-   <div class="flex items-center my-5 justify-center gap-3">
+   <div class="flex flex-col md:flex-row items-center my-5 justify-center gap-3">
     <div>
         <a href="{{ url('auth/google') }}" class="inline-flex border px-3 py-2 rounded hover:bg-blue-50 transition w-full">
             <x-icons.google-icon />
