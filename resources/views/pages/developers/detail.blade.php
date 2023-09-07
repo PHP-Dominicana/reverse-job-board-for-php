@@ -1,12 +1,11 @@
 <x-guest-layout>
     <div class="bg-white">
-        <x-main-menu />
         <div class="relative isolate px-6 pt-20 lg:px-8">
             <div class="mt-20 bg-white ">
                 <div class="mx-auto max-w-7xl px-4 sm:px-8">
                     <div>
                         <div class="p-1 w-20 h-20 bg-white shadow -translate-y-2/3">
-                            <div class="overflow-hidden w-full h-full w-full h-full">
+                            <div class="overflow-hidden w-full">
                                 @if (!empty($developer->profile_photo_url))
                                     <img class="w-16 h-16 rounded-full flex-shrink-0" src="{{ $developer->profile_photo_url }}" alt="{{ $developer->name }}">
                                 @else
