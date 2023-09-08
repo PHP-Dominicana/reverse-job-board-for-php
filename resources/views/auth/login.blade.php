@@ -1,7 +1,9 @@
-<x-guest-layout>
+<x-auth-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <a href="{{ url('/') }}">
+                <x-icons.default-logo />
+            </a>
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -30,38 +32,36 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                    {{ __('Don\'t have an account? Register here') }}
-                </a>
-            </div>
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center mt-4 justify-between">
+                <div class="block">
+                    <label for="remember_me" class="flex items-center">
+                        <x-checkbox id="remember_me" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
                 @endif
-                <x-button class="ml-4">
+            </div>
+            
+            <div class="flex items-center justify-end mt-4">
+            
+                <x-button class="w-full justify-center ">
                     {{ __('Log in') }}
                 </x-button>
             </div>
-            <div class="flex items-center justify-end mt-4">
-                <a href="{{ url('auth/google') }}">
-                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em; width: 170px;">
-                </a>
-            </div>
-            <div class="flex items-center justify-end mt-4">
-                <a href="{{ url('auth/github') }}">
-                    <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/picture/file/4363/github.png" style=" width: 180px;">
-                </a>
-            </div>
+
+
+           <x-auth-social-buttons />
+
+           <div class="flex items-center justify-center mt-5">
+            <a class=" text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                {{ __('Don\'t have an account?') }}
+                <span class="text-blue-500 underline font-semibold">{{ __('Register here') }}</span>
+            </a>
+        </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-auth-layout>

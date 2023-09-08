@@ -1,7 +1,9 @@
-<x-guest-layout>
+<x-auth-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <a href="{{ url('/') }}">
+                <x-icons.default-logo />
+            </a>
         </x-slot>
 
         <div x-data="{ recovery: false }">
@@ -55,4 +57,4 @@
             </form>
         </div>
     </x-authentication-card>
-</x-guest-layout>
+</x-auth-layout>

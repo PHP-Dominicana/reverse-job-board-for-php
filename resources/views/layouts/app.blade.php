@@ -21,7 +21,7 @@
 <body class="font-sans antialiased pt-16">
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <main class="min-h-screen bg-gray-100">
         <x-main-menu />
         <!-- Page Heading -->
         @if (isset($header))
@@ -36,7 +36,7 @@
         <main>
             {{ $slot }}
         </main>
-    </div>
+    </main>
 
     @stack('modals')
 
